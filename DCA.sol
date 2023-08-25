@@ -52,7 +52,7 @@ contract Counter is KeeperCompatibleInterface,Ownable {
     }
 
     function checkUpkeep(bytes calldata checkData) external view override returns (bool upkeepNeeded, bytes memory performData) {
-        bool condition1=asset_from.balanceOf(address(this)) >0;
+        bool condition1=asset_from.balanceOf(owner()) >0;
         bool condition2=(block.timestamp - lastTimeStamp) > interval;
         if(condition1 && condition2){
             upkeepNeeded==true;
